@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using WebApplication3.Models;
@@ -14,8 +15,6 @@ namespace WebApplication3.Controllers
         {
             _context = context;
         }
-       
-
 
         public IActionResult Index()
         {
@@ -62,7 +61,7 @@ namespace WebApplication3.Controllers
                     EmployeeCount = form.EmployeeCount,
                     LocationURL = form.LocationURL
                 };
-                
+               
                 bankContext.BankBranches.Add(branch);
                 bankContext.SaveChanges();
                 return RedirectToAction("Index", "Bank");
@@ -125,7 +124,7 @@ namespace WebApplication3.Controllers
         public IActionResult AddEmployee(int id)
         {
 
-           
+            
             return View();
 
         }
@@ -143,7 +142,7 @@ namespace WebApplication3.Controllers
                 addEmployee.Position = employee.Position;
                 bankbranch.Employees.Add(addEmployee);
                 database.SaveChanges();
-                
+               
                 return RedirectToAction("Details", new { id = id });
             }
             return View(employee);
